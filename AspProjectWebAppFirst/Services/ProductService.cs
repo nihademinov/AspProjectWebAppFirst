@@ -35,4 +35,40 @@ public class ProductService
             _products.Remove(product);
         }
     }
+
+    public void CreateProduct(Product product)
+    {
+        _products.Add(product); 
+    }
+
+    public Product? GetProductById(int id)
+    {
+        var product = _products.FirstOrDefault(p => p.Id == id);
+        if (product != null)
+        {
+            return product;
+        }
+
+        return null;
+    }
+
+    public List<Product>? GetProductByPrice(string price)
+    {
+
+        List<Product>? products = new List<Product>();
+        var checkPice = price + " Azn";
+
+        foreach (var item in _products)
+        {
+            if(item.Price == checkPice)
+            {
+                products?.Add(item);
+            }
+        }
+        if (products != null)
+        {
+            return products;
+        }
+        return null;
+    }
 }
